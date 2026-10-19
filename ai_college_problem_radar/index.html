@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI College Problem Radar</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo">⌁</span><div><b>AI College</b><span>Problem Radar</span></div></div>
+    <nav>
+      <a href="#home">Home</a><a href="#features">Features</a><a href="#submit">Submit Complaint</a><a href="#status">Track Status</a><a href="#about">About</a>
+    </nav>
+    <button class="btn small" onclick="openLogin()">Admin Login</button>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-text">
+        <div class="pill">AI-POWERED CAMPUS INTELLIGENCE</div>
+        <h1>Detect Problems.<br><span>Route Smarter.</span><br>Resolve Faster.</h1>
+        <p>AI College Problem Radar helps students report campus issues and helps colleges classify, prioritize, route, and track complaints from one centralized platform.</p>
+        <div class="hero-actions"><a class="btn" href="#submit">Submit a Complaint</a><a class="btn ghost" href="#status">Track Complaint</a></div>
+        <div class="stats"><div><b id="totalCount">1,248</b><span>Complaints</span></div><div><b>94%</b><span>Resolved</span></div><div><b>12</b><span>Departments</span></div></div>
+      </div>
+      <div class="radar-card">
+        <div class="radar-ring r1"></div><div class="radar-ring r2"></div><div class="radar-ring r3"></div><div class="radar-line"></div><div class="radar-dot"></div>
+        <div class="radar-label"><span class="dot red"></span>Critical Issue</div>
+        <div class="radar-label l2"><span class="dot yellow"></span>Review</div>
+        <div class="radar-label l3"><span class="dot green"></span>Resolved</div>
+        <div class="radar-center">AI<br><small>RADAR</small></div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="section-head"><span>CORE FEATURES</span><h2>Smart grievance management</h2><p>Everything needed to turn scattered complaints into actionable campus intelligence.</p></div>
+      <div class="cards">
+        <article><div class="icon">✦</div><h3>AI Classification</h3><p>Automatically identify categories such as academics, hostel, infrastructure, transport, examination, and administration.</p></article>
+        <article><div class="icon">⚡</div><h3>Smart Priority</h3><p>Assign Low, Medium, High, or Critical priority using complaint severity and predefined rules.</p></article>
+        <article><div class="icon">↗</div><h3>Instant Routing</h3><p>Send each complaint to the relevant department for faster action and escalation.</p></article>
+        <article><div class="icon">◷</div><h3>Live Tracking</h3><p>Students can check complaint progress from submission to resolution.</p></article>
+        <article><div class="icon">▦</div><h3>Analytics</h3><p>Admins can view complaint trends, pending cases, recurring issues, and department performance.</p></article>
+        <article><div class="icon">🔔</div><h3>Notifications</h3><p>Provide automatic status alerts and department notifications through the connected notification service.</p></article>
+      </div>
+    </section>
+
+    <section id="submit" class="section alt">
+      <div class="section-head"><span>REPORT AN ISSUE</span><h2>Submit a complaint</h2><p>Describe your issue clearly. The demo AI will suggest a category and priority.</p></div>
+      <form id="complaintForm" class="form-card">
+        <div class="grid2"><label>Student Name<input id="studentName" required placeholder="Enter your name"></label><label>Student ID<input id="studentId" required placeholder="e.g. CE2026-101"></label></div>
+        <div class="grid2"><label>Email<input id="email" type="email" required placeholder="student@example.com"></label><label>Department<select id="dept"><option>Computer Engineering</option><option>Information Technology</option><option>Mechanical Engineering</option><option>Civil Engineering</option><option>Electrical Engineering</option><option>Other</option></select></label></div>
+        <label>Complaint Title<input id="title" required placeholder="Short description of the problem"></label>
+        <label>Complaint Description<textarea id="description" required rows="5" placeholder="Explain what happened, where, and when..."></textarea></label>
+        <div class="grid2"><label>Location<input id="location" placeholder="e.g. Block A, Lab 2"></label><label>Attachment<input id="attachment" type="file" accept="image/*,.pdf"></label></div>
+        <div id="aiPreview" class="ai-preview hidden"><b>AI Analysis Preview</b><div><span id="aiCategory"></span><span id="aiPriority"></span></div><p id="aiReason"></p></div>
+        <button class="btn" type="submit">Analyze & Submit Complaint</button>
+        <p class="note">Demo only: this front-end stores complaints in your browser. Connect a backend/database before real deployment.</p>
+      </form>
+    </section>
+
+    <section id="status" class="section">
+      <div class="section-head"><span>TRACK YOUR ISSUE</span><h2>Complaint status</h2><p>Enter your complaint ID to view its current status.</p></div>
+      <div class="track-box"><input id="trackId" placeholder="e.g. CPR-1001"><button class="btn" onclick="trackComplaint()">Track</button></div>
+      <div id="trackResult"></div>
+    </section>
+
+    <section id="about" class="section alt">
+      <div class="section-head"><span>ABOUT THE PROJECT</span><h2>From complaint to campus intelligence</h2></div>
+      <div class="about-grid"><div><h3>How it works</h3><p>Student complaint → API → AI/NLP classification → priority detection → department routing → resolution tracking → analytics.</p><p>The production architecture can use React.js, Node.js/Express, Python AI/NLP services, MongoDB, and Firebase notifications.</p></div><div class="tech-list"><b>Technology Stack</b><span>React.js</span><span>Node.js + Express</span><span>Python AI/NLP</span><span>MongoDB</span><span>Firebase</span><span>GitHub</span></div></div>
+    </section>
+  </main>
+
+  <footer><div class="brand"><span class="logo">⌁</span><div><b>AI College</b><span>Problem Radar</span></div></div><p>Smart campus grievance management • Student project prototype</p><p>© 2026 AI College Problem Radar</p></footer>
+
+  <div id="loginModal" class="modal hidden"><div class="modal-card"><button class="close" onclick="closeLogin()">×</button><h2>Admin Login</h2><p class="muted">Demo credentials: admin / admin123</p><input id="adminUser" placeholder="Username"><input id="adminPass" type="password" placeholder="Password"><button class="btn" onclick="adminLogin()">Login</button><p id="loginMsg"></p></div></div>
+  <script src="script.js"></script>
+</body>
+</html>
